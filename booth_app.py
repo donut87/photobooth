@@ -181,6 +181,10 @@ class PhotoboothApp(object):
                 self.cleanup()
                 sys.exit(0)
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self._running = False
+                    self.cleanup()
+                    sys.exit(0)
                 return True
 
         return False
