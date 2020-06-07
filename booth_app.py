@@ -85,6 +85,7 @@ class PhotoboothApp(object):
 
     def _init_camera(self):
         self.camera = picamera.PiCamera()
+        self.camera.rotation = 180
         self.camera.annotate_text_size = 128
         self.camera.led = False
         self.camera.vflip = True
