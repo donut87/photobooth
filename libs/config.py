@@ -2,7 +2,7 @@ import ConfigParser
 
 
 class Config(object):
-    config_file = "settings.cfg"
+    config_file = "/home/photobooth/photobooth/settings.cfg"
     section = "photobooth"
 
     def __init__(self):

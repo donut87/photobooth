@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 import picamera
 import pygame
 
-import backends
+#import backends
 from libs.config import Config
 from libs.gui import rounded_rect, Colors
 
@@ -25,7 +25,7 @@ class PhotoboothApp(object):
         self.font = None
         self._init_camera()
         self.photos = []
-        self.printer = backends.acquire_backend("output", "line_printer", self.config)
+        #self.printer = backends.acquire_backend("output", "line_printer", self.config)
         self._init_gpio()
         self._get_last_runtime_id()
         self.get_current_photo_directory()
@@ -114,7 +114,7 @@ class PhotoboothApp(object):
         all_photos = pygame.Surface((self.screen_width, self.screen_height))
 
         for photo_number in range(1, 5):
-            photo_filename = "images/sample%d.png" % photo_number
+            photo_filename = "/home/photobooth/photobooth/images/sample%d.png" % photo_number
             self.put_photo_on_surface(all_photos, photo_filename, photo_number)
 
         all_photos.set_colorkey(Colors.BLACK)
