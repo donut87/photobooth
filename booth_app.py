@@ -100,7 +100,8 @@ class PhotoboothApp(object):
                 return
             pygame.display.flip()
             time.sleep(0.1)
-            self.parse_events()
+            if self.parse_events():
+                return
 
     def fill_background(self):
         background = pygame.Surface((self.screen_width, self.screen_height))
@@ -175,10 +176,14 @@ class PhotoboothApp(object):
 
     def parse_events(self):
         for event in pygame.event.get():
-            if event.type in (pygame.QUIT, pygame.KEYDOWN):
+            if event.type == pygame.QUIT:
                 self._running = False
                 self.cleanup()
                 sys.exit(0)
+            if event.type == pygame.KEYDOWN:
+                return True
+
+        return False
 
     def limit_cpu_usage(self):
         self.clock.tick(self.config.getfloat("MAX_FPS"))
@@ -260,7 +265,7 @@ class PhotoboothApp(object):
         pygame.display.flip()
         photo_filename = self.generate_photo_filename()
         self.render_and_save_printer_photo(photo_filename)
-        self.printer.export(photo_filename)
+        #self.printer.export(photo_filename)
         self.photos = []
 
         time.sleep(10)
