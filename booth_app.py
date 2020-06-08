@@ -171,8 +171,10 @@ class PhotoboothApp(object):
         self.camera.annotate_text = ""
 
         photo_filename = '%s/photo_%d.jpg' % (self.config.get("TEMP_DIR"), number)
-        self.camera.capture(photo_filename)
         self.camera.stop_preview()
+        self._canvas.fill((255,255,255))
+        pygame.display.flip()
+        self.camera.capture(photo_filename)
         self.put_photo_on_surface(self._photo_space, photo_filename, number)
 
     def parse_events(self):
