@@ -277,9 +277,14 @@ class PhotoboothApp(object):
         self._photo_space = self.fill_photo_space()
 
     def stage_photos(self):
-        for number in range(1, 5):
+        max = 5
+        for number in range(1, max):
             self.take_photo(number)
             self.redraw_background()
+            if number < max - 1:
+                time.sleep(1.5)
+                self.render_text(u"Nächstes Bild?\nKnopf drücken!", bg_color=Colors.ORANGE)
+                self.wait_for_button()
 
     def cleanup(self):
         GPIO.cleanup()
